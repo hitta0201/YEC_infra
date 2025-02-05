@@ -3,21 +3,26 @@
 # WorkspaceONE Access コネクタ画面の監視用スクリプト
 # 2025/02/04 新規作成
 #------------------------------------
+$credentialsFilePath = '.\credentials.txt'
+
 $URL_auth = 'https://yaskawa-electric-corporation-4608.vmwareidentity.asia/auth/0'
 $URL_connector = 'https://yaskawa-electric-corporation-4608.vmwareidentity.asia/ws1adminui/#/workspace/components/connectors/list'
 
-$Driver = Start-SeDriver -Browser Chrome -StartURL $URL_auth
+# ファイルからデータを取得
+$credentials = Get-Content -Path $credentialsFilePath -Raw
+$credentialParts = $credentials -split ':'
+# ログインIDとパスワードを格納
+$username = $credentialParts[0].Trim()
+$password = $credentialParts[1].Trim()
 
-#$Searchbox = Get-SeElement -By Name -value q -Single
-#Invoke-SeKeys -Element $Searchbox -Keys 'Powershell-Selenium'
-#Invoke-SeKeys -Element $Searchbox -Keys ([OpenQA.Selenium.Keys]::Enter)
+$Driver = Start-SeDriver -Browser Chrome -StartURL $URL_auth
 
 # ユーザー名入力
 $loginid_area = Get-SeElement -By XPath -Value '//*[@id="username"]'
-Invoke-SeKeys -Element $loginid_area -Keys '***'
+Invoke-SeKeys -Element $loginid_area -Keys $username
 # パスワード入力
 $password_area = Get-SeElement -By XPath -Value '//*[@id="password"]'
-Invoke-SeKeys -Element $password_area -Keys '***'
+Invoke-SeKeys -Element $password_area -Keys $password
 
 # ログインボタンをクリック
 $login_button = Get-SeElement -By XPath -Value '//*[@id="signIn"]'
