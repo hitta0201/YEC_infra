@@ -14,10 +14,10 @@ $Driver = Start-SeDriver -Browser Chrome -StartURL $URL_auth
 
 # ユーザー名入力
 $loginid_area = Get-SeElement -By XPath -Value '//*[@id="username"]'
-Invoke-SeKeys -Element $loginid_area -Keys 'aqua-operator'
+Invoke-SeKeys -Element $loginid_area -Keys '***'
 # パスワード入力
 $password_area = Get-SeElement -By XPath -Value '//*[@id="password"]'
-Invoke-SeKeys -Element $password_area -Keys 'Dws@dmin1!'
+Invoke-SeKeys -Element $password_area -Keys '***'
 
 # ログインボタンをクリック
 $login_button = Get-SeElement -By XPath -Value '//*[@id="signIn"]'
