@@ -1,3 +1,8 @@
+#------------------------------------
+# WS1_Access_watch.ps1
+# WorkspaceONE Access コネクタ画面の監視用スクリプト
+# 2025/02/04 新規作成
+#------------------------------------
 $URL_auth = 'https://yaskawa-electric-corporation-4608.vmwareidentity.asia/auth/0'
 $URL_connector = 'https://yaskawa-electric-corporation-4608.vmwareidentity.asia/ws1adminui/#/workspace/components/connectors/list'
 
